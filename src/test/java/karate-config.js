@@ -8,6 +8,9 @@ function fn() {
     env: env,
     myVarName: 'someValue'
   }
+  config.generateUniqueName = function() {
+      return java.util.UUID.randomUUID().toString();
+    }
   if (env == 'dev') {
     // customize
     // e.g. config.foo = 'bar';
