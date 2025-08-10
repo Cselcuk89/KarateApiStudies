@@ -5,17 +5,20 @@ function fn() {
     env = 'dev';
   }
   var config = {
-    env: env,
-    myVarName: 'someValue'
+    apiUrl: 'https://conduit-api.bondaracademy.com/api/'
+
   }
   config.generateUniqueName = function() {
       return java.util.UUID.randomUUID().toString();
     }
   if (env == 'dev') {
-    // customize
-    // e.g. config.foo = 'bar';
-  } else if (env == 'e2e') {
-    // customize
+    config.userEmail = 'abc1@gmail.com'
+    config.userPassword = 'abc123456'
+  } else if (env == 'qa') {
+    config.userEmail = 'abc2@gmail.com'
+    config.userPassword = 'abc123456'
   }
+  var accessToken = karate.callSingle('classpath:helpers/createToken.feature',config).authToken
+  karate.configure('headers', {Authorization: 'Token ' + accessToken})
   return config;
 }
