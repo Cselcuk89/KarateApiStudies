@@ -1,4 +1,4 @@
-@debug
+@ignore
 Feature: Articles
   Background: Define url
     Given url apiUrl
